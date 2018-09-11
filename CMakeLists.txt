@@ -13,7 +13,10 @@ project(forcaster)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(forcaster main.cc)
+file(GLOB SOURCES ${PROJECT_SOURCE_DIR}/src/*)
+include_directories(${PROJECT_SOURCE_DIR}/include)
+
+add_executable(forcaster ${SOURCES})
 
 add_dependencies(forcaster cpprest fastrtps)
 target_link_libraries(forcaster cpprest fastrtps)
