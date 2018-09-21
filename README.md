@@ -12,3 +12,16 @@ These variables can be set as either Docker secrets, or just as environment vari
 - DARKSKY_LATITUDE
 - DARKSKY_LONGITUDE
 - DARKSKY_POLLING_RATE
+
+# Building
+
+Building from source using cmake
+
+```bash
+$ git clone --depth 1 https://github.com/raveious/darksky-rtps.git darksky-rtps
+$ cd darksky-rtps
+$ git submodule init && git submodule update
+$ mkdir build
+$ cd build
+$ cmake .. && make
+```
