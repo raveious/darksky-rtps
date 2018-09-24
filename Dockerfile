@@ -10,9 +10,7 @@ WORKDIR /home/cpprestsdk/build
 RUN cmake .. && make && make install
 
 # Build forcaster
-RUN git clone --depth 1 https://github.com/raveious/darksky-rtps.git /home/forcaster
-WORKDIR /home/forcaster
-RUN git submodule init && git submodule update
+RUN git clone --depth 1 --recurse-submodules https://github.com/raveious/darksky-rtps.git /home/forcaster
 WORKDIR /home/forcaster/build
 RUN cmake .. && make
 
