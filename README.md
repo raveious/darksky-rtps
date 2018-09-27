@@ -18,10 +18,21 @@ These variables can be set as either Docker secrets, or just as environment vari
 Building from source using cmake
 
 ```bash
-$ git clone --depth 1 https://github.com/raveious/darksky-rtps.git darksky-rtps
+$ git clone https://github.com/raveious/darksky-rtps.git darksky-rtps
 $ cd darksky-rtps
 $ git submodule init && git submodule update
 $ mkdir build
 $ cd build
 $ cmake .. && make
 ```
+
+# Data Sharing
+
+This application will publish DarkSky API data on the following topics, using the corresponding data types.
+
+Topic Name | Data Type
+:---:|:---:
+/weather/conditions | WeatherCondition
+/weather/forcast/minutely | WeatherForcast
+/weather/forcast/hourly | WeatherForcast
+/weather/forcast/daily | WeatherForcast
