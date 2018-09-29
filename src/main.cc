@@ -8,6 +8,7 @@
 #include <cstdlib>
 #include <string>
 #include <exception>
+#include <WeatherBroadcaster.hh>
 
 using namespace web;
 using namespace http;
@@ -78,6 +79,7 @@ int main(int argc, char const *argv[]) {
 
     // Creating client to make calls with
     http_client client(weather_uri.to_uri());
+    Home::WeatherBroadcaster broadcaster;
 
     while (true) {
         client.request(methods::GET).then([](http_response response) -> pplx::task<json::value>
@@ -90,14 +92,13 @@ int main(int argc, char const *argv[]) {
             // Handle error cases, for now return empty json value...
             return pplx::task_from_result(json::value());
         })
-            .then([](pplx::task<json::value> previousTask)
+            .then([&broadcaster](pplx::task<json::value> previousTask)
         {
             try
             {
                 const json::value& v = previousTask.get();
                 // Perform actions here to process the JSON value...
-
-                v.serialize(std::cout);
+                broadcaster.publish(v);
             }
             catch (const http_exception& e)
             {
