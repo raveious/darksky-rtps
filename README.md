@@ -28,7 +28,7 @@ $ cmake .. && make
 
 # Data Sharing
 
-This application will publish DarkSky API data on the following topics, using the corresponding data types.
+This application will publish DarkSky API data on the following topics, using the corresponding data types in domain 42.
 
 Topic Name | Data Type
 :---:|:---:
