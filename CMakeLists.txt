@@ -26,4 +26,4 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 
 add_executable(forcaster ${SOURCES})
 
-target_link_libraries(forcaster cpprest fastrtps boost_system ssl crypto)
+target_link_libraries(forcaster cpprestsdk::cpprest fastrtps boost_system ssl crypto)
