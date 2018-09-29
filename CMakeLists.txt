@@ -12,11 +12,11 @@ find_package(fastcdr)
 find_package(fastrtps)
 
 # Add code generation functions
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/idl/cmake/modules/")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/idl/cmake/modules/")
 include(IDLGeneration)
 
 # Find all of the source files
-file(GLOB IDL_SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/idl/*.idl)
+find_file(IDL_SOURCE weather.idl ${CMAKE_CURRENT_SOURCE_DIR}/idl/)
 file(GLOB SOURCES ${PROJECT_SOURCE_DIR}/src/*)
 
 # Generate the source from IDL files
