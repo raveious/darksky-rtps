@@ -33,6 +33,6 @@ This application will publish DarkSky API data on the following topics, using th
 Topic Name | Data Type
 :---:|:---:
 /weather/conditions | WeatherCondition
-/weather/forcast/minutely | WeatherForcast
+/weather/alerts | WeatherAlert
 /weather/forcast/hourly | WeatherForcast
 /weather/forcast/daily | WeatherForcast

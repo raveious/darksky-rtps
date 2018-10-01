@@ -77,6 +77,8 @@ int main(int argc, char const *argv[]) {
         polling_rate = std::chrono::milliseconds(3000);
     }
 
+    weather_uri.set_query("exclude=minutely,flags");
+
     // Creating client to make calls with
     http_client client(weather_uri.to_uri());
     Home::WeatherBroadcaster broadcaster;
