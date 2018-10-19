@@ -2,7 +2,7 @@
 RTPS bridge for DarkSky API using eProsima's FastRTPS.
 
 ## What happened to Weather Underground?
- Turns out that Weather Underground will be [shutting down it's API service as on 12/31/2018](https://apicommunity.wunderground.com/weatherapi/topics/end-of-service-for-the-weather-underground-api), so I decided to use [DarkSky](https://darksky.net) instead.
+ Turns out that Weather Underground will be [shutting down it's API service as of 12/31/2018](https://apicommunity.wunderground.com/weatherapi/topics/end-of-service-for-the-weather-underground-api), so I decided to use [DarkSky](https://darksky.net) instead.
 
 # Requirements
 
