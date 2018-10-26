@@ -137,8 +137,8 @@ void WeatherBroadcaster::publishHourlyForcast (web::json::value data) {
     auto jsonForcast = data.at("data").as_array();
 
     for (web::json::array::iterator it = jsonForcast.begin(); it != jsonForcast.end(); ++it) {
-        it->serialize(std::cout);
-        std::cout << std::endl << std::endl;
+        // it->serialize(std::cout);
+        // std::cout << std::endl << std::endl;
 
         DailyWeather temp;
 
