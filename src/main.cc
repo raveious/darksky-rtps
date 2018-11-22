@@ -73,8 +73,8 @@ int main(int argc, char const *argv[]) {
     try {
         polling_rate = std::chrono::milliseconds(get_configuration_data<int>("DARKSKY_POLLING_RATE"));
     } catch (std::exception& e) {
-        std::cout << "Unable to determine DarkSky API polling rate, so we're just going to use 3000ms: " << e.what() << std::endl;
-        polling_rate = std::chrono::milliseconds(3000);
+        std::cout << "Unable to determine DarkSky API polling rate, so we're just going to use 90000ms (90sec): " << e.what() << std::endl;
+        polling_rate = std::chrono::milliseconds(90000);
     }
 
     weather_uri.set_query("exclude=minutely,flags");
