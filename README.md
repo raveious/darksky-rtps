@@ -37,3 +37,32 @@ Topic Name | Data Type
 /weather/alerts | WeatherAlert
 /weather/forcast/hourly | WeatherForcast
 /weather/forcast/daily | WeatherForcast
+
+# Docker Deployment
+
+You can use a use a docker-compose file like this one to deploy this as a service.
+
+```YAML
+version: '3.1'
+
+services:
+  weather_forcaster:
+    image: raveious/darksky-rtps
+    ports:
+      - '44084:44084'
+      - '17900:17900'
+      - '17910:17910'
+      - '17911:17911'
+    secrets:
+      - DARKSKY_KEY
+      - DARKSKY_LATITUDE
+      - DARKSKY_LONGITUDE
+
+secrets:
+  DARKSKY_KEY:
+    external: true
+  DARKSKY_LATITUDE:
+    external: true
+  DARKSKY_LONGITUDE:
+    external: true
+```
