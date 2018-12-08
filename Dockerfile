@@ -17,6 +17,8 @@ RUN cmake .. && make
 # Production container should only container the executable
 FROM raveious/fastrtps
 
+RUN apk add --update --no-cache boost
+
 #COPY --from=builder /usr/local/include/* /usr/local/include/
 COPY --from=builder /usr/local/lib64/* /usr/local/lib64/
 COPY --from=builder /usr/local/lib/* /usr/local/lib/
