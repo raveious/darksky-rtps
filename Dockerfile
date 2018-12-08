@@ -15,7 +15,7 @@ WORKDIR /home/darksky-rtps/build
 RUN cmake .. && make
 
 # Production container should only container the executable
-FROM alpine:3.8
+FROM raveious/fastrtps
 
 #COPY --from=builder /usr/local/include/* /usr/local/include/
 COPY --from=builder /usr/local/lib64/* /usr/local/lib64/
