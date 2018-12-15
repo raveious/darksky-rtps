@@ -17,6 +17,9 @@ RUN cmake .. && make
 # Production container should only container the executable
 FROM raveious/fastrtps
 
+# Exposing known ports for this node
+EXPOSE 44084/udp 17900/udp 17910/udp 17911/udp
+
 RUN apk add --update --no-cache boost
 
 #COPY --from=builder /usr/local/include/* /usr/local/include/
