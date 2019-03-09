@@ -7,7 +7,7 @@ RUN apk add --update --no-cache git cmake make build-base gcc g++ linux-headers 
 # Build cpprestsdk
 RUN git clone --depth 1 --recurse-submodules --single-branch https://github.com/Microsoft/cpprestsdk.git /home/cpprestsdk
 WORKDIR /home/cpprestsdk/build
-RUN cmake .. && make -j && make install
+RUN cmake .. && make && make install
 
 # Build forcaster
 RUN git clone --depth 1 --recurse-submodules --single-branch https://github.com/raveious/darksky-rtps.git /home/darksky-rtps
