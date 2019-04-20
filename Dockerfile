@@ -1,5 +1,5 @@
 # Build environment for the application
-FROM raveious/fastrtps as builder
+FROM raveious/fastrtps:alpine-latest as builder
 
 # Install build dependences
 RUN apk add --update --no-cache git cmake make build-base gcc g++ linux-headers openssl openssl-dev boost boost-dev
@@ -15,11 +15,12 @@ WORKDIR /home/darksky-rtps/build
 RUN cmake .. && make
 
 # Production container should only container the executable
-FROM raveious/fastrtps
+FROM raveious/fastrtps:alpine-latest
 
 # Exposing known ports for this node
 EXPOSE 44084/udp 17900/udp 17910/udp 17911/udp
 
+# boost is loaded dynamically
 RUN apk add --update --no-cache boost
 
 #COPY --from=builder /usr/local/include/* /usr/local/include/
