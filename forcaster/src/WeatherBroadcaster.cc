@@ -65,9 +65,10 @@ void WeatherBroadcaster::publish (web::json::value data) {
 }
 
 void WeatherBroadcaster::publishConditions (web::json::value data) {
-    // data.serialize(std::cout);
-    // std::cout << std::endl << std::endl;
-
+    #ifndef NDEBUG
+        data.serialize(std::cout);
+        std::cout << std::endl << std::endl;
+    #endif
     WeatherCondition pubData;
 
     pubData.apparentTemperature(data.at("apparentTemperature").as_double());
@@ -94,8 +95,10 @@ void WeatherBroadcaster::publishDailyForcast (web::json::value data) {
     auto jsonForcast = data.at("data").as_array();
 
     for (web::json::array::iterator it = jsonForcast.begin(); it != jsonForcast.end(); ++it) {
-        // it->serialize(std::cout);
-        // std::cout << std::endl << std::endl;
+        #ifndef NDEBUG
+            it->serialize(std::cout);
+            std::cout << std::endl << std::endl;
+        #endif
 
         DailyWeather temp;
 
@@ -137,8 +140,10 @@ void WeatherBroadcaster::publishHourlyForcast (web::json::value data) {
     auto jsonForcast = data.at("data").as_array();
 
     for (web::json::array::iterator it = jsonForcast.begin(); it != jsonForcast.end(); ++it) {
-        // it->serialize(std::cout);
-        // std::cout << std::endl << std::endl;
+        #ifndef NDEBUG
+            it->serialize(std::cout);
+            std::cout << std::endl << std::endl;
+        #endif
 
         DailyWeather temp;
 
