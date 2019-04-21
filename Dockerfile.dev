@@ -1,5 +1,5 @@
 # Build environment for the application
-FROM raveious/fastrtps as builder
+FROM raveious/fastrtps:alpine-latest as builder
 
 # Install build dependences
 RUN apk add --update --no-cache git cmake make build-base gcc g++ linux-headers openssl openssl-dev boost boost-dev
@@ -7,5 +7,7 @@ RUN apk add --update --no-cache git cmake make build-base gcc g++ linux-headers 
 # Build cpprestsdk
 RUN git clone --depth 1 --recurse-submodules --single-branch https://github.com/Microsoft/cpprestsdk.git /home/cpprestsdk
 WORKDIR /home/cpprestsdk/build
-RUN cmake .. && make -j && make install
+RUN cmake .. && make -ij && make install
+
+WORKDIR /build
 
