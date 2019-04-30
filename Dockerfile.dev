@@ -5,9 +5,8 @@ FROM raveious/fastrtps:alpine-latest as builder
 RUN apk add --update --no-cache git cmake make build-base gcc g++ linux-headers openssl openssl-dev boost boost-dev
 
 # Build cpprestsdk
-RUN git clone --depth 1 --recurse-submodules --single-branch https://github.com/Microsoft/cpprestsdk.git /home/cpprestsdk
-WORKDIR /home/cpprestsdk/build
-RUN cmake .. && make -ij && make install
+RUN git clone --depth 1 --recurse-submodules --single-branch https://github.com/Microsoft/cpprestsdk.git /cpprestsdk
+WORKDIR /cpprestsdk/build
+RUN cmake .. && make && make install
 
 WORKDIR /build
-
