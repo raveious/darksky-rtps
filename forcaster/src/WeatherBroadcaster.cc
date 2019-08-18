@@ -77,7 +77,7 @@ void WeatherBroadcaster::publishConditions (web::json::value data) {
     pubData.time(data.at("time").as_integer());
 
     pubData.summary(data.at("summary").as_string());
-    pubData.icon(parseWeatherIcon(data.at("icon").as_string()));
+    pubData.icon(data.at("icon").as_string());
 
     pubData.precipitationData(parsePrecipitation(data));
     pubData.atmosphericData(parseAtmospheric(data));
@@ -90,7 +90,7 @@ void WeatherBroadcaster::publishDailyForcast (web::json::value data) {
     std::vector<DailyWeather> forcastData;
 
     pubData.summary(data.at("summary").as_string());
-    pubData.icon(parseWeatherIcon(data.at("icon").as_string()));
+    pubData.icon(data.at("icon").as_string());
 
     auto jsonForcast = data.at("data").as_array();
 
@@ -111,7 +111,7 @@ void WeatherBroadcaster::publishDailyForcast (web::json::value data) {
         temp.temperatureLowTime(it->at("temperatureLowTime").as_integer());
 
         temp.summary(it->at("summary").as_string());
-        temp.icon(parseWeatherIcon(it->at("icon").as_string()));
+        temp.icon(it->at("icon").as_string());
 
         temp.apparentTemperatureHigh(it->at("apparentTemperatureHigh").as_double());
         temp.apparentTemperatureLow(it->at("apparentTemperatureLow").as_double());
@@ -135,7 +135,7 @@ void WeatherBroadcaster::publishHourlyForcast (web::json::value data) {
     std::vector<DailyWeather> forcastData;
 
     pubData.summary(data.at("summary").as_string());
-    pubData.icon(parseWeatherIcon(data.at("icon").as_string()));
+    pubData.icon(data.at("icon").as_string());
 
     auto jsonForcast = data.at("data").as_array();
 
@@ -153,7 +153,7 @@ void WeatherBroadcaster::publishHourlyForcast (web::json::value data) {
         temp.time(it->at("time").as_integer());
 
         temp.summary(it->at("summary").as_string());
-        temp.icon(parseWeatherIcon(it->at("icon").as_string()));
+        temp.icon(it->at("icon").as_string());
 
         temp.precipitationData(parsePrecipitation(*it));
         temp.atmosphericData(parseAtmospheric(*it));
@@ -170,46 +170,6 @@ void WeatherBroadcaster::publishAlerts (web::json::value data) {
 
 }
 
-WeatherIcon WeatherBroadcaster::parseWeatherIcon (std::string text) {
-    if (text == "clear-night")
-        return WeatherIcon::CLEAR_NIGHT;
-    if (text == "rain")
-        return WeatherIcon::RAIN;
-    if (text == "snow")
-        return WeatherIcon::SNOW;
-    if (text == "sleet")
-        return WeatherIcon::SLEET;
-    if (text == "wind")
-        return WeatherIcon::WIND;
-    if (text == "fog")
-        return WeatherIcon::FOG;
-    if (text == "cloudy")
-        return WeatherIcon::CLOUDY;
-    if (text == "partly-cloudy-day")
-        return WeatherIcon::PARTLY_CLOUDY_DAY;
-    if (text == "partly-cloudy-night")
-        return WeatherIcon::PARTLY_CLOUDY_NIGHT;
-    if (text == "hail")
-        return WeatherIcon::HAIL;
-    if (text == "thunderstorm")
-        return WeatherIcon::THUNDERSTORM;
-    if (text == "tornado")
-        return WeatherIcon::TORNADO;
-
-    return WeatherIcon::CLEAR_DAY;
-}
-
-PrecipType WeatherBroadcaster::parsePrecipType (std::string text) {
-    if (text == "rain")
-        return PrecipType::RAINING;
-    if (text == "snow")
-        return PrecipType::SNOWING;
-    if (text == "sleet")
-        return PrecipType::SLEETING;
-
-    return PrecipType::NO_PRECIP;
-}
-
 Precipitation WeatherBroadcaster::parsePrecipitation (web::json::value data) {
     Precipitation retVal;
 
@@ -218,7 +178,7 @@ Precipitation WeatherBroadcaster::parsePrecipitation (web::json::value data) {
 
     // This data is not always present...
     if (data.has_field("precipType"))
-        retVal.precipType(parsePrecipType(data.at("precipType").as_string()));
+        retVal.precipType(data.at("precipType").as_string());
 
     if (data.has_field("precipIntensityError"))
         retVal.precipProbability(data.at("precipIntensityError").as_double());

@@ -24,8 +24,6 @@ class WeatherBroadcaster {
     void publishHourlyForcast(web::json::value data);
     void publishAlerts (web::json::value data);
 
-    WeatherIcon parseWeatherIcon (std::string text);
-    PrecipType parsePrecipType (std::string text);
     Precipitation parsePrecipitation (web::json::value data);
     Atmospheric parseAtmospheric (web::json::value data);
 
